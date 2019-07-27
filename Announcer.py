@@ -10,6 +10,7 @@ engine = pyttsx3.init()
 parser = argparse.ArgumentParser("CSV Splitter")
 parser.add_argument("-l", "--list", help="Lists available voices, quits", required=False, action='store_true')
 parser.add_argument("-s", "--set", help="Sets the voice", type=int, default=1, required=False)
+parser.add_argument("-d", "--delay", help="Delay before announcement(seconds)", type=int, default=0, required=False)
 args = parser.parse_args()
 
 if (args.list):
@@ -29,6 +30,8 @@ while True:
     song = spotify.song()
     artist = spotify.artist()
     if (not(song == None or artist == None) and (song != prevsong or artist!=prevartist)):
+        if (args.delay!=0):
+            time.sleep(args.delay)
         engine.say("Playing " + song + " by " + artist)
         engine.runAndWait()
         print("Playing " + song + " by " + artist)
