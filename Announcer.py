@@ -24,6 +24,9 @@ if (args.list):
     
 if (args.set != None):
     voices = engine.getProperty('voices')
+    if (args.set > len(voices)-1):
+        print ("Input voice out of range. Please input a number from 0 to " + str(len(voices)-1))
+        quit()
     engine.setProperty('voice', voices[args.set].id)
 
 while True:
