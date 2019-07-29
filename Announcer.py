@@ -11,6 +11,7 @@ parser = argparse.ArgumentParser("CSV Splitter")
 parser.add_argument("-l", "--list", help="Lists available voices, quits", required=False, action='store_true')
 parser.add_argument("-s", "--set", help="Sets the voice", type=int, default=1, required=False)
 parser.add_argument("-d", "--delay", help="Delay before announcement(seconds)", type=float, default=0, required=False)
+parser.add_argument("-r", "--rate", help="Speaking rate in words per minute[Default: 170]", type=int, default=170, required=False)
 args = parser.parse_args()
 
 if (args.list):
@@ -28,6 +29,8 @@ if (args.set != None):
         print ("Input voice out of range. Please input a number from 0 to " + str(len(voices)-1))
         quit()
     engine.setProperty('voice', voices[args.set].id)
+
+engine.setProperty('rate', args.rate)
 
 while True:
     song = spotify.song()
