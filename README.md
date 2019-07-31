@@ -3,7 +3,7 @@ When it detects a song change in spotify, it reads out the song name and artist.
 
 Does not use the spotify api which allows it to be used offline.
 
-Uses SwSpotify to get the song & pyttsx3 for text to speach. 
+Uses SwSpotify to get the song & pyttsx3 for text to speech. 
 
 Supported Platforms:
 + Windows
