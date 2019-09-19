@@ -33,14 +33,17 @@ if (args.set != None):
 engine.setProperty('rate', args.rate)
 
 while True:
-    song = spotify.song()
-    artist = spotify.artist()
-    if (not(song == None or artist == None) and (song != prevsong or artist!=prevartist)):
-        if (args.delay!=0):
-            time.sleep(args.delay)
-        engine.say("Playing " + song + " by " + artist)
-        engine.runAndWait()
-        print("Playing " + song + " by " + artist)
-        prevsong = song
-        prevartist = artist
-    time.sleep(1)
+	try:
+		song = spotify.song()
+		artist = spotify.artist()
+		if (not(song == None or artist == None) and (song != prevsong or artist!=prevartist)):
+			if (args.delay!=0):
+				time.sleep(args.delay)
+			engine.say("Playing " + song + " by " + artist)
+			engine.runAndWait()
+			print("Playing " + song + " by " + artist)
+			prevsong = song
+			prevartist = artist
+	except spotify.SpotifyNotRunning as e:
+		pass
+	time.sleep(1)
